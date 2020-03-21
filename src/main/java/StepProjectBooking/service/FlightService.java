@@ -6,6 +6,7 @@ import StepProjectBooking.predicates.Predicates;
 import StepProjectBooking.randoms.FlightGenerator;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,8 +32,8 @@ public class FlightService {
                 .stream().map(Flight::represent).collect(Collectors.toList());
     }
 
-    public boolean getAll() {
-        return daoFlight.getAll().size() == 0;
+    public Collection<Flight> getAll() {
+        return daoFlight.getAll();
     }
 
     public void addFlight(Flight flight) {

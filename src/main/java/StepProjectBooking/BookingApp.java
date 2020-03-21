@@ -33,7 +33,7 @@ public class BookingApp {
         FlightController flightController = new FlightController(flightService, bookingService, console);
         BookingController bookingController = new BookingController(bookingService, flightService, console);
 
-        if (flightController.getAll()) {
+        if (flightController.getAll().size()==0) {
             int i = 0;
             while (i++ < 20) {
                 flightController.addFlight(FlightGenerator.genFlight());

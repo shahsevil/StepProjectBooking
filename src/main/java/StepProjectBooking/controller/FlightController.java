@@ -9,6 +9,7 @@ import StepProjectBooking.service.FlightService;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FlightController {
     FlightService flightService;
@@ -53,8 +54,8 @@ public class FlightController {
         flightService.addFlight(flight);
     }
 
-    public boolean getAll() {
-        return flightService.getAll();
+    public List<String> getAll() {
+        return flightService.getAll().stream().map(Flight::represent).collect(Collectors.toList());
     }
 
     public String showMenu() {
