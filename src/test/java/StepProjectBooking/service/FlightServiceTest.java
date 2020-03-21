@@ -2,12 +2,8 @@ package StepProjectBooking.service;
 
 import StepProjectBooking.controller.FlightController;
 import StepProjectBooking.database.DAOFlightFileText;
-import StepProjectBooking.entity.Flight;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,14 +11,12 @@ class FlightServiceTest {
 
     private DAOFlightFileText daoFlight = new DAOFlightFileText("flight.txt");
     private FlightService flightService;
-    private Flight flight;
     private FlightController flightController;
 
     @BeforeEach
     void setUp() {
         this.flightService = new FlightService(daoFlight);
         this.flightController=new FlightController();
-        this.flight=flight= new Flight(1500,"Baku", LocalDate.parse("2020-03-22"), LocalTime.parse("10:00"),20);
     }
 
     @Test
