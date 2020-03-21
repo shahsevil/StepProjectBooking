@@ -26,7 +26,7 @@ public class BookingApp {
         ConsoleMain console = new ConsoleMain();
         DAOBookingFileText daoBooking = new DAOBookingFileText("booking.txt");
         DAOFlightFileText daoFlight = new DAOFlightFileText("flight.txt");
-        FlightService flightService = new FlightService(daoBooking, daoFlight);
+        FlightService flightService = new FlightService(daoFlight);
         BookingService bookingService = new BookingService(daoBooking, daoFlight);
 
         FlightController flightController = new FlightController(flightService, bookingService, console);
@@ -34,7 +34,7 @@ public class BookingApp {
 
         if (flightController.getAll()) {
             int i = 0;
-            while (i++ < 100) {
+            while (i++ < 20) {
                 flightController.addFlight();
             }
         }

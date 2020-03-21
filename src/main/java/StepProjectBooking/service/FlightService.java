@@ -1,6 +1,5 @@
 package StepProjectBooking.service;
 
-import StepProjectBooking.database.DAOBookingFileText;
 import StepProjectBooking.database.DAOFlightFileText;
 import StepProjectBooking.entity.Flight;
 import StepProjectBooking.predicates.Predicates;
@@ -11,11 +10,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class FlightService {
-    DAOBookingFileText daoBooking;
     DAOFlightFileText daoFlight;
 
-    public FlightService(DAOBookingFileText daoBooking, DAOFlightFileText daoFlight) {
-        this.daoBooking = daoBooking;
+    public FlightService(DAOFlightFileText daoFlight) {
         this.daoFlight = daoFlight;
     }
 
