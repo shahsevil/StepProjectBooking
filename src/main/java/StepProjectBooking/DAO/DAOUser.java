@@ -1,4 +1,4 @@
-package StepProjectBooking.user;
+package StepProjectBooking.DAO;
 
 import java.util.List;
 

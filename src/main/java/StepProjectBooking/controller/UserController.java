@@ -1,4 +1,7 @@
-package StepProjectBooking.user;
+package StepProjectBooking.controller;
+
+import StepProjectBooking.entity.User;
+import StepProjectBooking.service.UserService;
 
 public class UserController {
     private UserService userService;

@@ -1,10 +1,14 @@
-package StepProjectBooking.user;
+package StepProjectBooking.service;
+
+import StepProjectBooking.DAO.DAOUser;
+import StepProjectBooking.database.DAOUserFileText;
+import StepProjectBooking.entity.User;
 
 import java.util.List;
 
 public class UserService implements DAOUser<User> {
 
-    private DAOUser<User> userDAO =new UserDaoFileText();
+    private DAOUser<User> userDAO =new DAOUserFileText();
 
     @Override
     public List<User> getAll() {

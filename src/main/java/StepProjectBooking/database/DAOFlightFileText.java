@@ -1,5 +1,6 @@
-package StepProjectBooking.DAO;
+package StepProjectBooking.database;
 
+import StepProjectBooking.DAO.DAO;
 import StepProjectBooking.entity.Flight;
 
 import java.io.*;

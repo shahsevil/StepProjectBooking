@@ -1,17 +1,20 @@
-package StepProjectBooking.user;
+package StepProjectBooking.database;
+
+import StepProjectBooking.DAO.DAOUser;
+import StepProjectBooking.entity.User;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDaoFileText implements DAOUser<User> {
+public class DAOUserFileText implements DAOUser<User> {
     private List<User> users = new ArrayList<>();
 
-    public UserDaoFileText(List<User> users) {
+    public DAOUserFileText(List<User> users) {
         this.users = users;
     }
 
-    public UserDaoFileText() {
+    public DAOUserFileText() {
     }
 
     @Override

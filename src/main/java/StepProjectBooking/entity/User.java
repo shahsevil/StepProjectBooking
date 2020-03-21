@@ -1,4 +1,4 @@
-package StepProjectBooking.user;
+package StepProjectBooking.entity;
 
 public class User {
     private String userName;
