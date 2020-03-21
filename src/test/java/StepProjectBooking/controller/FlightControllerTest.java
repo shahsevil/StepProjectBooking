@@ -21,18 +21,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class FlightControllerTest {
     FlightController app;
 
-    @BeforeEach
-    public void Begin() {
+
+    @Test
+    void Test1(){
         DAOBookingFileText daoBooking = new DAOBookingFileText("booking.txt");
-        DAOFlightFileText daoFlight = new DAOFlightFileText("flight.txt");
+        DAOFlightFileText daoFlight = new DAOFlightFileText("flight1.txt");
         BookingService bookingService = new BookingService(daoBooking,daoFlight);
         FlightService flightService = new FlightService(daoFlight);
         Console console = new ConsoleMain();
         this.app = new FlightController(flightService,bookingService,console);
-    }
-
-    @Test
-    void Test1(){
         Flight flight = new Flight("Baki", LocalDate.now(), LocalTime.now().plusHours(2),100);
         app.addFlight(flight);
         String actual = app.show();
@@ -44,7 +41,7 @@ class FlightControllerTest {
     @Test
     void Test2(){
         DAOBookingFileText daoBooking = new DAOBookingFileText("booking.txt");
-        DAOFlightFileText daoFlight = new DAOFlightFileText("flight.txt");
+        DAOFlightFileText daoFlight = new DAOFlightFileText("flight2.txt");
         BookingService bookingService = new BookingService(daoBooking,daoFlight);
         FlightService flightService = new FlightService(daoFlight);
         Console console = new ConsoleMain();
@@ -62,7 +59,7 @@ class FlightControllerTest {
     @Test
     void Test3(){
         DAOBookingFileText daoBooking = new DAOBookingFileText("booking.txt");
-        DAOFlightFileText daoFlight = new DAOFlightFileText("flight.txt");
+        DAOFlightFileText daoFlight = new DAOFlightFileText("flight3.txt");
         BookingService bookingService = new BookingService(daoBooking,daoFlight);
         FlightService flightService = new FlightService(daoFlight);
         Console console = new ConsoleMain();
