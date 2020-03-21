@@ -42,7 +42,7 @@ public class FlightController {
             String surname = console.readLn();
             passengers.add(new Passenger(name, surname));
         }
-        flightService.book(Integer.parseInt(flightId), passengers);
+        bookingService.book(Integer.parseInt(flightId), passengers);
     }
 
     public void addFlight() {

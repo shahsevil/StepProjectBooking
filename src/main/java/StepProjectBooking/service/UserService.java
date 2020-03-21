@@ -8,7 +8,7 @@ import java.util.List;
 
 public class UserService implements DAOUser<User> {
 
-    private DAOUser<User> userDAO =new DAOUserFileText();
+    private DAOUser<User> userDAO = new DAOUserFileText();
 
     @Override
     public List<User> getAll() {
@@ -25,7 +25,7 @@ public class UserService implements DAOUser<User> {
     }
 
     @Override
-    public boolean delete(String  name) {
+    public boolean delete(String name) {
         userDAO.delete(name);
         return false;
     }
@@ -44,5 +44,6 @@ public class UserService implements DAOUser<User> {
     }
 
     @Override
-    public void LoadData(List<User> users) {}
+    public void LoadData(List<User> users) {
+    }
 }

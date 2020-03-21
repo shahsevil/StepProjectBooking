@@ -20,14 +20,12 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-public class TestMain {
+public class BookingApp {
     public static void main(String[] args) throws IOException {
 
         ConsoleMain console = new ConsoleMain();
         DAOBookingFileText daoBooking = new DAOBookingFileText("booking.txt");
         DAOFlightFileText daoFlight = new DAOFlightFileText("flight.txt");
-//            Service service = new Service(daoBooking, daoFlight);
-//            Controller controller = new Controller(console, service);
         FlightService flightService = new FlightService(daoBooking, daoFlight);
         BookingService bookingService = new BookingService(daoBooking, daoFlight);
 
