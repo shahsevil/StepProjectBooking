@@ -1,5 +1,6 @@
 package StepProjectBooking.controller;
 
+import StepProjectBooking.entity.Flight;
 import StepProjectBooking.entity.Passenger;
 import StepProjectBooking.io.Console;
 import StepProjectBooking.service.BookingService;
@@ -18,6 +19,9 @@ public class FlightController {
         this.flightService = flightService;
         this.bookingService = bookingService;
         this.console = console;
+    }
+
+    public FlightController() {
     }
 
     public String show() {
@@ -45,8 +49,8 @@ public class FlightController {
         bookingService.book(Integer.parseInt(flightId), passengers);
     }
 
-    public void addFlight() {
-        flightService.addFlight();
+    public void addFlight(Flight flight) {
+        flightService.addFlight(flight);
     }
 
     public boolean getAll() {

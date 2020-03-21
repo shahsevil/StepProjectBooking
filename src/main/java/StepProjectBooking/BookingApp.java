@@ -10,6 +10,7 @@ import StepProjectBooking.exceptions.FlightNotCancelledException;
 import StepProjectBooking.exceptions.FlightNotFoundException;
 import StepProjectBooking.exceptions.UserFlightsNotFound;
 import StepProjectBooking.io.ConsoleMain;
+import StepProjectBooking.randoms.FlightGenerator;
 import StepProjectBooking.service.BookingService;
 import StepProjectBooking.service.FlightService;
 
@@ -35,7 +36,7 @@ public class BookingApp {
         if (flightController.getAll()) {
             int i = 0;
             while (i++ < 20) {
-                flightController.addFlight();
+                flightController.addFlight(FlightGenerator.genFlight());
             }
         }
 

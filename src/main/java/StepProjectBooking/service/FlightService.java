@@ -35,8 +35,9 @@ public class FlightService {
         return daoFlight.getAll().size() == 0;
     }
 
-    public void addFlight() {
-        daoFlight.create(FlightGenerator.genFlight());
+    public void addFlight(Flight flight) {
+        //daoFlight.create(FlightGenerator.genFlight());
+        daoFlight.create(flight);
     }
 
     public String showMenu() {
