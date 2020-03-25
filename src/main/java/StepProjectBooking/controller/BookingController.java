@@ -42,4 +42,5 @@ public class BookingController {
         String surname = console.readLn();
         return String.join("\n", bookingService.getMyFlights(name.toLowerCase().trim(), surname.toLowerCase().trim()));
     }
+
 }

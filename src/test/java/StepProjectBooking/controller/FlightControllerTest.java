@@ -7,11 +7,11 @@ import StepProjectBooking.io.Console;
 import StepProjectBooking.io.ConsoleMain;
 import StepProjectBooking.service.BookingService;
 import StepProjectBooking.service.FlightService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,65 +19,59 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FlightControllerTest {
-    FlightController app;
-
+    FlightController flightController;
+    DAOBookingFileText daoBooking = new DAOBookingFileText("booking.txt");
+    DAOFlightFileText daoFlight = new DAOFlightFileText("flight2.txt");
+    BookingService bookingService = new BookingService(daoBooking, daoFlight);
+    FlightService flightService = new FlightService(daoFlight);
+    Console console = new ConsoleMain();
+    Flight flight = new Flight(13, "Baku", LocalDate.now().plusDays(1),
+            LocalTime.parse(LocalTime.now().plusHours(24).format(DateTimeFormatter.ofPattern("HH:mm:ss"))),
+            100);
 
     @Test
-    void Test1(){
+    void searchForBook() {
+        this.flightController = new FlightController(flightService, bookingService, console);
+        flightController.addFlight(flight);
+        String expected = flight.represent();
+        String actual = flightController.searchForBook("Baku", LocalDate.now().plusDays(1), 1);
+        assertEquals(expected, actual);
+    }
+    @Test
+    void show(){
         DAOBookingFileText daoBooking = new DAOBookingFileText("booking.txt");
-        DAOFlightFileText daoFlight = new DAOFlightFileText("flight1.txt");
+        DAOFlightFileText daoFlight = new DAOFlightFileText("flightShowTest.txt");
         BookingService bookingService = new BookingService(daoBooking,daoFlight);
         FlightService flightService = new FlightService(daoFlight);
         Console console = new ConsoleMain();
-        this.app = new FlightController(flightService,bookingService,console);
-        Flight flight = new Flight("Baki", LocalDate.now(), LocalTime.now().plusHours(2),100);
-        app.addFlight(flight);
-        String actual = app.show();
+        this.flightController = new FlightController(flightService,bookingService,console);
+        Flight flight = new Flight("Baku", LocalDate.now().plusDays(1), LocalTime.parse(LocalTime.now().plusHours(24)
+                .format(DateTimeFormatter.ofPattern("HH:mm:ss"))), 100);
+        flightController.addFlight(flight);
         String expected = flight.represent();
-
-        assertEquals(expected,actual);
+        String actual = flightController.show();
+        assertEquals(expected, actual);
     }
 
     @Test
-    void Test2(){
+    void addFlight(){
         DAOBookingFileText daoBooking = new DAOBookingFileText("booking.txt");
-        DAOFlightFileText daoFlight = new DAOFlightFileText("flight2.txt");
+        DAOFlightFileText daoFlight = new DAOFlightFileText("addFlightTest.txt");
         BookingService bookingService = new BookingService(daoBooking,daoFlight);
         FlightService flightService = new FlightService(daoFlight);
         Console console = new ConsoleMain();
-        this.app = new FlightController(flightService,bookingService,console);
+        this.flightController = new FlightController(flightService,bookingService,console);
 
-        Flight flight = new Flight("Baki", LocalDate.of(2020,05,24), LocalTime.of(12,10)/*now().plusHours(2)*/,100);
-        app.addFlight(flight);
-
-        String expected = flight.represent();
-        String actual = app.searchForBook("Baki", LocalDate.of(2020,05,24), 2);
-
-        assertEquals(expected,actual);
-    }
-
-    @Test
-    void Test3(){
-        DAOBookingFileText daoBooking = new DAOBookingFileText("booking.txt");
-        DAOFlightFileText daoFlight = new DAOFlightFileText("flight3.txt");
-        BookingService bookingService = new BookingService(daoBooking,daoFlight);
-        FlightService flightService = new FlightService(daoFlight);
-        Console console = new ConsoleMain();
-        this.app = new FlightController(flightService,bookingService,console);
-
-        Flight flight1 = new Flight("Baki", LocalDate.of(2020,05,24), LocalTime.of(12,10)/*now().plusHours(2)*/,100);
+        Flight flight1 = new Flight("Baku", LocalDate.of(2020,05,24), LocalTime.of(12,10)/*now().plusHours(2)*/,100);
         Flight flight2 = new Flight("Paris", LocalDate.of(2020,10,10), LocalTime.of(20,00)/*now().plusHours(2)*/,200);
 
-        app.addFlight(flight1);
-        app.addFlight(flight2);
+        flightController.addFlight(flight1);
+        flightController.addFlight(flight2);
 
         List<String> expected = new ArrayList(Arrays.asList(flight1.represent(),flight2.represent()));
-        List<String> actual = app.getAll();
+        List<String> actual = flightController.getAll();
 
         assertEquals(expected,actual);
     }
-
-
-
 
 }
