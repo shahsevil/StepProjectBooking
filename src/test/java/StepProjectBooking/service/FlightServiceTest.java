@@ -1,40 +1,62 @@
 package StepProjectBooking.service;
 
-import StepProjectBooking.controller.FlightController;
 import StepProjectBooking.database.DAOFlightFileText;
+import StepProjectBooking.entity.Flight;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class FlightServiceTest {
 
-    private DAOFlightFileText daoFlight = new DAOFlightFileText("flight.txt");
-    private FlightService flightService;
-    private FlightController flightController;
+    DAOFlightFileText daoFlightFileText;
+    FlightService flightService;
+    Flight flight = new Flight(13, "Baku", LocalDate.now().plusDays(1), LocalTime.parse(LocalTime.now().plusHours(24).format(DateTimeFormatter.ofPattern("HH:mm:ss"))), 100);
 
     @BeforeEach
     void setUp() {
-        this.flightService = new FlightService(daoFlight);
-        this.flightController=new FlightController();
+        this.daoFlightFileText = new DAOFlightFileText("flightServiceTest.txt");
+        this.flightService = new FlightService(daoFlightFileText);
+        this.flight = flight;
     }
 
     @Test
     void getAllFlights() {
-        String expected = "[4|Tbilisi|2020-03-22|13:36:05|85, 15|Berlin|2020-03-22|14:23:31|85]";
-        assertEquals(expected, flightService.getAllFlights().toString());
+        String expected = flight.represent2();
+        String actual = flightService.getAllFlights().toString();
+        assertEquals(expected, actual);
     }
 
     @Test
     void getFlightById() {
-        String expected = "20|Berlin|2020-03-30|08:23:27|15";
-        assertEquals(expected, flightService.getFlightById(20));
+        String expected = flightService.getFlightById(5);
+        String actual = flightService.getFlightById(5);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void searchForBook() {
+        String expected = "[]";
+        String actual = flightService.searchForBook("Baku", LocalDate.now().plusDays(1), 1).toString();
+        assertEquals(expected, actual);
     }
 
     @Test
     void getAll() {
-        String expected = "[4|Tbilisi|2020-03-22|13:36:05|85, 15|Berlin|2020-03-22|14:23:31|85]";
-        assertEquals(expected,flightService.getAllFlights().toString());
+        String expected = "[]";
+        String actual = String.valueOf(flightService.getAll());
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void addFlight() {
+        String expected = flight.represent2();
+        String actual = flightService.addFlight1(flight);
+        assertEquals(expected,actual);
     }
 
     @Test

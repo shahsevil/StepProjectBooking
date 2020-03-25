@@ -52,4 +52,9 @@ public class FlightService {
                 .append("7. End session")
                 .toString();
     }
+
+    public String addFlight1(Flight flight) {
+        daoFlight.create(flight);
+        return flight.represent2();
+    }
 }

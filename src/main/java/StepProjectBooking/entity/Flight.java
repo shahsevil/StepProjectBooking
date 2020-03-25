@@ -82,4 +82,8 @@ public class Flight {
     return new Flight(Integer.parseInt(chunks[0]), chunks[1], LocalDate.parse(chunks[2]),
             LocalTime.parse(chunks[3]), Integer.parseInt(chunks[4]));
   }
+
+  public String represent2() {
+    return String.format("[%d|%s|%s|%s|%d]", id, dest, date, time, freeSpaces);
+  }
 }
