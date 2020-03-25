@@ -29,7 +29,7 @@ public class BookingApp {
         DAOFlightFileText daoFlight = new DAOFlightFileText("flight.txt");
         FlightService flightService = new FlightService(daoFlight);
         BookingService bookingService = new BookingService(daoBooking, daoFlight);
-        System.out.println("---");
+        System.out.println("Step");
 
         FlightController flightController = new FlightController(flightService, bookingService, console);
         BookingController bookingController = new BookingController(bookingService, flightService, console);
